@@ -1,0 +1,3783 @@
+<!doctype html>
+<html>
+<head>
+<title>Escape Room</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167966921-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-167966921-1');
+
+  function start(){
+    document.getElementById('landingPage').style.display = 'none'
+    document.getElementById('landing').style.display = 'block'
+  }
+</script>
+
+<style>
+    #myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+.content{
+    position:absolute;
+    text-align: center;
+    animation: contentFade 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+@keyframes contentFade {
+  from {opacity: 0;}
+  to {opacity: 0.8;}
+}
+.roomThumb{
+    position:relative;
+    margin: auto;
+    max-width:20%;
+    max-height: auto;
+    background-color: rgba( 255, 255, 255, 1.0);
+    border: 3px solid black;
+    border-radius:10px;
+   /* z-index: 1;*/
+}
+.startButton{
+    opacity: 1.0;
+    background-color:white;
+    margin-top: 1%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+    cursor:pointer;
+    border: 3px solid black;
+    border-radius:10px;
+}
+.startButton:hover{
+    background-color:#35567e;
+    border: 3px solid white;
+    border-radius:10px;
+    color:white;
+}
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    height:100vh;
+    width:100vw;
+
+}
+body{
+    text-align: center;
+    margin: 0;
+    width:100vw;
+    height:100vh;
+}
+/*Landing CSS*/
+.landing{
+    position: absolute;
+    margin:0;
+    background-image: url(Landing.png);
+    width:100vw;
+    height:100vh;
+    background-color: black;
+    background-size:cover;
+}
+.landingText{
+    position: relative;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left:10%;
+    margin-right:10%;
+    padding:3%;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 10px;
+}
+.startButton{
+    opacity: 1.0;
+    background-color:white;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+    cursor:pointer;
+    border: 3px solid #35567e;
+    border-radius:10px;
+}
+.startButton:hover{
+    background-color:#35567e;
+    border: 3px solid white;
+    border-radius:10px;
+    color:white;
+}
+/*Hint Screen CSS*/
+#hintScreen{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    width:100vw;
+    height:100vh;
+    background-color: rgba(58,58,58,0.8);
+    z-index:4;
+    color:white;
+}
+a{
+    color:white;
+}
+.hintLeaveButton{
+    position:relative;
+    display:block;
+    opacity: 1.0;
+    background-color:white;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+    cursor:pointer;
+    border: 3px solid rgb(58,58,58);
+    border-radius:10px;
+    margin-top:5%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.hintLeaveButton:hover{
+    background-color: rgb(58,58,58);
+    border: 3px solid white;
+    color:white;
+
+}
+.hintGetButton{
+    display:block;
+    position:relative;
+    opacity: 1.0;
+    background-color:white;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+    cursor:pointer;
+    border: 3px solid rgb(58,58,58);
+    border-radius:10px;
+    margin-top:5%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.hintGetButton:hover{
+    background-color: rgb(58,58,58);
+    border: 3px solid white;
+    color:white;
+
+}
+/*Browser Check CSS*/
+#checkBrowser{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(BrowserCheck.png);
+    width:100vw;
+    height:100vh;
+    background-color: black;
+    z-index:4;
+}
+.clickableItemTest {
+     background-color: Transparent;
+     outline: none;
+     border: 2px solid black;
+     position: absolute;
+     z-index:5;
+}
+#test1{
+    top:30.5%;
+    left:17.25%;
+    padding-top:0%;
+    padding-bottom:6.25%;
+    padding-left:0%;
+    padding-right:6.25%;
+}
+#test2{
+    top:41.75%;
+    left:45.4%;
+    padding-top:0%;
+    padding-bottom:9%;
+    padding-left:0%;
+    padding-right:9%;
+}
+#test3{
+    top:30.5%;
+    left:76.25%;
+    padding-top:0%;
+    padding-bottom:6.25%;
+    padding-left:0%;
+    padding-right:6.25%;
+}
+#test4{
+    
+    max-width:100%;
+    top: 80%;
+    left:25%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+    color:black;
+    background-color:white;
+}
+/*Inventory CSS*/
+#inventory{
+    background-color: rgba(51,51,51,0.8);
+    position:fixed;
+    top:0;
+    left:0;
+    padding-left:1%;
+    padding-right:1%;
+    width:100%;
+   
+    z-index:3;
+    text-align:left;
+    color:white;
+}
+.column{
+display:none;
+ float:left;
+ width:4%;
+ padding:1%;
+}
+.textcolumn{
+  float:left;
+ width:4%;
+ padding:1%;   
+}
+.inventoryItem{
+    
+    width:100%;
+}
+.inventoryItemHint{
+    
+    width:100%;
+    border-radius:10px;
+}
+.inventoryItemHint:hover{
+    cursor:pointer;
+    opacity:0.8;
+
+}
+.inventoryText{
+ 
+    width:100%;
+}
+.inventoryItem:hover{
+    position:absolute;
+    background-color:#333333;
+    max-width: 30%;
+    height: auto;
+    border-radius:10px;
+    margin-top:5%;
+}
+/*Text output CSS*/
+#textOutput{
+    text-align:left;
+    background-color: rgba(51,51,51,0.8);
+    border-top: 5px solid #333333;
+    border-right: 5px solid #333333;
+    border-bottom: 5px solid #333333;
+    border-left: 5px solid #333333;
+    position:fixed;
+    margin-top:5.5%;
+    left:0;
+    z-index:3;   
+    padding-left:1%;
+    padding-right:1%;
+    width:19%;
+    height:15%;
+    color:white;
+}
+.interactionButton{
+    float:left;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:3%;
+    padding-right:3%;
+    margin-right:3px;
+    cursor:pointer;
+    border: 3px solid white;
+    border-radius:10px;
+    color:white;
+    background-color: inherit;
+  
+    
+}
+.interactionButton:hover{
+    background-color:white;
+    border: 3px solid #333333;
+    border-radius:10px;
+    color:#333333;
+}
+/*Rooms CSS*/
+#hallwayNoLight{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(HallwayNoLight.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#hallwayExitNoLightKey{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(HallwayExitNoLightKey.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#hallwayExitNoLightNoKey{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(HallwayExitNoLightNoKey.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#hallwayExitNoLightKeyGameOver{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(HallwayExitNoLightNoKeyOpenDoor.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#twoBedWithLetter{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(TwoBedWithLetter.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#twoBedNoLetter{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(TwoBedNoLetter.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#outTwoBedWithTowelNoHole{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(LookOutTwoBedWithTowelNoHole.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#outTwoBedNoTowelNoHole{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(LookOutTwoBedNoTowelNoHole.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#outTwoBedWithTowelWithHole{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(LookOutTwoBedWithTowelWithHole.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#outTwoBedNoTowelWithHole{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(LookOutTwoBedNoTowelWithHole.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#oneBedWithCross{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(1BedWithCross.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#oneBedNoCross{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(1BedNoCross.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#oneBedAngleWithCross{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(1BedAngleWithCross.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#oneBedAngleNoCross{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(1BedAngleNoCross.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#toiletCloseupWithHammer{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(ToiletDeskCloseupWithHammer.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#toiletCloseupNoHammer{
+    background-size:cover;
+    position: absolute;
+    margin:0;
+    background-image: url(ToiletDeskCloseupNoHammer.png);
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+/*Clickable Item CSS*/
+.clickableItem{
+     background-color: Transparent;
+     outline: none;
+     /*border: 2px solid black;*/
+     border: 2px solid Transparent;
+     position: absolute;
+}
+.viewableItem{
+    position:absolute;
+    background-color: rgba(51,51,51,1);
+    max-width: 30%;
+    height: auto;
+    border:4px solid white;
+    border-radius:10px;
+    top:35%;
+    left:35%;
+    z-index:1;
+    
+}
+.viewableItemImg{
+      max-width: 100%;
+    max-height: 100%;  
+}
+.viewableItemBook{
+     background-color: rgba(0,0,0,1);
+    position: absolute;
+    width:100%;
+    height:100vh;
+    
+    
+}
+.viewableItemImgBook{
+    
+ position: relative;
+     margin-top:10%;
+     margin-left:auto;
+     margin-right:auto;
+     max-width: 50%;
+     height: auto;
+}
+/*Keypad CSS*/
+.keypadImg{
+     position: relative;
+     margin-left:auto;
+     margin-right:auto;
+     max-width: 50%;
+     height: auto;
+}
+#keypadDiv{
+    position: absolute;
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#keyOne{
+    top:28%;
+    left:41.5%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left: 2%;
+    padding-right:2%;
+}
+#keyTwo{
+    top:28%;
+    left:48%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#keyThree{
+    top:28%;
+    left:54.5%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#keyFour{
+    top:40%;
+    left:41.5%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left: 2%;
+    padding-right:2%;
+}
+#keyFive{
+    top:40%;
+    left:48%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#keySix{
+    top:40%;
+    left:54.5%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#keySeven{
+    top:52%;
+    left:41.5%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left: 2%;
+    padding-right:2%;
+}
+#keyEight{
+    top:52%;
+    left:48%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#keyNine{
+    top:52%;
+    left:54.5%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#keyStar{
+    top:64%;
+    left:41.5%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left: 2%;
+    padding-right:2%;
+}
+#keyZero{
+    top:64%;
+    left:48%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#keyHash{
+    top:64%;
+    left:54.5%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+/*Keybox CSS*/
+#keyBoxDiv{
+    position: absolute;
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#keyBoxImg{
+     position: relative;
+     margin-top:10%;
+     margin-left:auto;
+     margin-right:auto;
+     max-width: 50%;
+     height: auto;
+}
+.keyBoxSubmit{
+    display:block;
+    background-color: #333333;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;
+    margin-left:auto;
+    margin-right:auto;
+    cursor:pointer;
+    border: 3px solid white;
+    border-radius:10px;
+    color:white;
+}
+.keyBoxSubmit:hover{
+    background-color:white;
+    border: 3px solid #333333;
+    border-radius:10px;
+    color:#333333;
+}
+/*Sink CSS*/
+#sinkCloseupDiv{
+     position: absolute;
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+#sinkCloseupImg{
+     position: relative;
+     margin-top:10%;
+     margin-left:auto;
+     margin-right:auto;
+     max-width: 40%;
+     height: auto;
+}
+#tapClick{
+    top:38%;
+    left:40%;
+    padding-top:6%;
+    padding-bottom:4%;
+    padding-left:10%;
+    padding-right:4%; 
+}
+/*Light CSS*/
+.lightCloseupDiv{
+     position: absolute;
+    width:100%;
+    height:100vh;
+    background-color: black;
+}
+.lightCloseupImg{
+     position: relative;
+     margin-top:10%;
+     margin-left:auto;
+     margin-right:auto;
+     max-width: 60%;
+     height: auto;
+}
+#screwOneClick{
+    top:28%;
+    left:18%;
+    padding-top:0%;
+    padding-bottom:16%;
+    padding-left:0%;
+    padding-right:16%;  
+}
+#screwTwoClick{
+    top:28%;
+    left:64%;
+    padding-top:0%;
+    padding-bottom:16%;
+    padding-left:0%;
+    padding-right:16%;  
+}
+/*Hallway Item CSS*/
+#brokenLightHallway{
+    top:12%;
+    left:52%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#workingLight1{
+    top:22%;
+    left:52%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#workingLight2{
+    top:28%;
+    left:52%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#workingLight3{
+    top:34%;
+    left:52%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#hallwayMove{
+    top:66%;
+    left:57%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#Cell1Door{
+    top:30%;
+    left:20%;
+    padding-top:13%;
+    padding-bottom:15%;
+    padding-left:1%;
+    padding-right:7%;
+}
+#righthandDoor{
+    top:43%;
+    left:75%;
+    padding-top:4%;
+    padding-bottom:18%;
+    padding-left:1%;
+    padding-right:2%;
+}
+/*Hallway Exit No Light With Key CSS*/
+#hallwayExitMove{
+    top:68%;
+    left:31%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#brokenLightHallwayExit{
+    top:24%;
+    left:28%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#Cell2Key{
+    top:47%;
+    left:40%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:1%;
+    padding-right:1%;  
+}
+#Keypad{
+    top:51%;
+    left:26%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;   
+}
+#Cell1Door2{
+    top:43%;
+    left:52%;
+    padding-top:0%;
+    padding-bottom:19%;
+    padding-left:1%;
+    padding-right:5%;
+}
+#exitDoor{
+    top:46%;
+    left:29%;
+    padding-top:0%;
+    padding-bottom:11%;
+    padding-left:1%;
+    padding-right:5%;
+}
+#workingLight1-2{
+    top:16%;
+    left:32%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#workingLight2-2{
+    top:29%;
+    left:28%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;
+}
+#workingLight3-2{
+    top:33%;
+    left:26%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;
+}
+#righthandDoor1{
+    top:47%;
+    left:44%;
+    padding-top:0%;
+    padding-bottom:15%;
+    padding-left:2%;
+    padding-right:0%;
+}
+#Cell2Door{
+    top:28%;
+    left:83%;
+    padding-top:0%;
+    padding-bottom:35%;
+    padding-left:1%;
+    padding-right:14%;
+}
+/*Hallway Exit No Light No Key CSS*/
+#hallwayExitMove-1{
+    top:68%;
+    left:31%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#brokenLightHallwayExit-1{
+    top:24%;
+    left:28%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#Keypad-1{
+    top:51%;
+    left:26%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;   
+}
+#Cell1Door2-1{
+    top:43%;
+    left:52%;
+    padding-top:0%;
+    padding-bottom:19%;
+    padding-left:1%;
+    padding-right:5%;
+}
+#exitDoor-1{
+    top:46%;
+    left:29%;
+    padding-top:0%;
+    padding-bottom:11%;
+    padding-left:1%;
+    padding-right:5%;
+}
+#workingLight1-2-1{
+    top:16%;
+    left:32%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#workingLight2-2-1{
+    top:29%;
+    left:28%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;
+}
+#workingLight3-2-1{
+    top:33%;
+    left:26%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;
+}
+#righthandDoor1-1{
+    top:47%;
+    left:44%;
+    padding-top:0%;
+    padding-bottom:15%;
+    padding-left:2%;
+    padding-right:0%;
+}
+#Cell2Door-1{
+    top:28%;
+    left:83%;
+    padding-top:0%;
+    padding-bottom:35%;
+    padding-left:1%;
+    padding-right:14%;
+}
+/*Hallway Exit No Light No Key GameOver CSS*/
+#hallwayExitMove-5{
+    top:68%;
+    left:31%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#brokenLightHallwayExit-5{
+    top:24%;
+    left:28%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#Keypad-5{
+    top:51%;
+    left:26%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;   
+}
+#Cell1Door2-5{
+    top:43%;
+    left:52%;
+    padding-top:0%;
+    padding-bottom:19%;
+    padding-left:1%;
+    padding-right:5%;
+}
+#exitDoor-5{
+    top:46%;
+    left:29%;
+    padding-top:0%;
+    padding-bottom:11%;
+    padding-left:1%;
+    padding-right:5%;
+}
+#workingLight1-2-5{
+    top:16%;
+    left:32%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#workingLight2-2-5{
+    top:29%;
+    left:28%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;
+}
+#workingLight3-2-5{
+    top:33%;
+    left:26%;
+    padding-top:1%;
+    padding-bottom:1%;
+    padding-left:1%;
+    padding-right:1%;
+}
+#righthandDoor1-5{
+    top:47%;
+    left:44%;
+    padding-top:0%;
+    padding-bottom:15%;
+    padding-left:2%;
+    padding-right:0%;
+}
+#Cell2Door-3{
+    top:28%;
+    left:83%;
+    padding-top:0%;
+    padding-bottom:35%;
+    padding-left:1%;
+    padding-right:14%;
+}
+/* 2 Bed CSS with envelope*/
+#envelope{
+    top:65%;
+    left:91%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;  
+}
+#twoBedOut{
+    top:58%;
+    left:54%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;  
+}
+#pillowLeft{
+    top:50%;
+    left:22%;
+    padding-top:0%;
+    padding-bottom:5%;
+    padding-left:0%;
+    padding-right:6%;  
+}
+#toilet{
+    top:60%;
+    left:2%;
+    padding-top:0%;
+    padding-bottom:10%;
+    padding-left:10%;
+    padding-right:0%;  
+}
+#bedRoll{
+    top:10%;
+    left:35%;
+    padding-top:0%;
+    padding-bottom:10%;
+    padding-left:12%;
+    padding-right:0%;  
+}
+#pillowTop{
+    top:20%;
+    left:48%;
+    padding-top:0%;
+    padding-bottom:5%;
+    padding-left:12%;
+    padding-right:0%;  
+}
+#keyBox{
+    top:40%;
+    left:48%;
+    padding-top:0%;
+    padding-bottom:3%;
+    padding-left:3%;
+    padding-right:0%;  
+}
+/* 2 Bed CSS no envelope*/
+#envelope-1{
+    top:65%;
+    left:91%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;  
+}
+#twoBedOut-1{
+    top:58%;
+    left:54%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;  
+}
+#pillowLeft-1{
+    top:50%;
+    left:22%;
+    padding-top:0%;
+    padding-bottom:5%;
+    padding-left:0%;
+    padding-right:6%;  
+}
+#toilet-1{
+    top:60%;
+    left:2%;
+    padding-top:0%;
+    padding-bottom:10%;
+    padding-left:10%;
+    padding-right:0%;  
+}
+#bedRoll-1{
+    top:10%;
+    left:35%;
+    padding-top:0%;
+    padding-bottom:10%;
+    padding-left:12%;
+    padding-right:0%;  
+}
+#pillowTop-1{
+    top:20%;
+    left:48%;
+    padding-top:0%;
+    padding-bottom:5%;
+    padding-left:12%;
+    padding-right:0%;  
+}
+#keyBox-1{
+    top:40%;
+    left:48%;
+    padding-top:0%;
+    padding-bottom:3%;
+    padding-left:3%;
+    padding-right:0%;  
+}
+/*Look Out 2 Bed CSS With Towel No Hole*/
+#hallwayExitMove-2{
+    top:66%;
+    left:6%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#Cell2InMove{
+    top:89%;
+    left:2%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#dirtyTowelClue{
+     top:50%;
+    left:80%;
+    padding-top:2%;
+    padding-bottom:3%;
+    padding-left:2%;
+    padding-right:2%;  
+}
+#toiletViewTwo{
+    top:74%;
+    left:77%;
+    padding-top:2%;
+    padding-bottom:8%;
+    padding-left:7%;
+    padding-right:2%;   
+}
+#stepladderClick{
+    top:10%;
+    left:61%;
+    padding-top:2%;
+    padding-bottom:15%;
+    padding-left:7%;
+    padding-right:2%; 
+}
+#sinkClick{
+     top:52%;
+    left:70%;
+    padding-top:2%;
+    padding-bottom:8%;
+    padding-left:7%;
+    padding-right:2%; 
+}
+/*Look Out 2 Bed CSS No Towel No Hole*/
+#hallwayExitMove-2-1{
+    top:66%;
+    left:6%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#Cell2InMove-1{
+    top:89%;
+    left:2%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#dirtyTowelClue-1{
+     top:50%;
+    left:80%;
+    padding-top:2%;
+    padding-bottom:3%;
+    padding-left:2%;
+    padding-right:2%;  
+}
+#toiletViewTwo-1{
+    top:74%;
+    left:77%;
+    padding-top:2%;
+    padding-bottom:8%;
+    padding-left:7%;
+    padding-right:2%;   
+}
+#stepladderClick-1{
+    top:10%;
+    left:61%;
+    padding-top:2%;
+    padding-bottom:15%;
+    padding-left:7%;
+    padding-right:2%; 
+}
+#sinkClick-1{
+     top:52%;
+    left:70%;
+    padding-top:2%;
+    padding-bottom:8%;
+    padding-left:7%;
+    padding-right:2%; 
+}
+/*Look Out 2 Bed CSS With Towel With Hole*/
+#hallwayExitMove-2-4{
+    top:66%;
+    left:6%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#Cell2InMove-2{
+    top:89%;
+    left:2%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#dirtyTowelClue-2{
+     top:50%;
+    left:80%;
+    padding-top:2%;
+    padding-bottom:3%;
+    padding-left:2%;
+    padding-right:2%;  
+}
+#toiletViewTwo-2{
+    top:74%;
+    left:77%;
+    padding-top:2%;
+    padding-bottom:8%;
+    padding-left:7%;
+    padding-right:2%;   
+}
+#stepladderClick-2{
+    top:10%;
+    left:61%;
+    padding-top:2%;
+    padding-bottom:15%;
+    padding-left:7%;
+    padding-right:2%; 
+}
+#sinkClick-2{
+     top:52%;
+    left:70%;
+    padding-top:2%;
+    padding-bottom:8%;
+    padding-left:7%;
+    padding-right:2%; 
+}
+/*Look Out 2 Bed CSS No Towel With Hole*/
+#hallwayExitMove-2-3{
+    top:66%;
+    left:6%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#Cell2InMove-3{
+    top:89%;
+    left:2%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#dirtyTowelClue-3{
+     top:50%;
+    left:80%;
+    padding-top:2%;
+    padding-bottom:3%;
+    padding-left:2%;
+    padding-right:2%;  
+}
+#toiletViewTwo-3{
+    top:74%;
+    left:77%;
+    padding-top:2%;
+    padding-bottom:8%;
+    padding-left:7%;
+    padding-right:2%;   
+}
+#stepladderClick-3{
+    top:10%;
+    left:61%;
+    padding-top:2%;
+    padding-bottom:15%;
+    padding-left:7%;
+    padding-right:2%; 
+}
+#sinkClick-3{
+     top:52%;
+    left:70%;
+    padding-top:2%;
+    padding-bottom:8%;
+    padding-left:7%;
+    padding-right:2%; 
+}
+/*One Bed With Cross CSS*/
+#hallwayExitMove-2-2{
+    top:92%;
+    left:95%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#oneBedAngleMove{
+    top:54%;
+    left:58%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#oneBedFullPillow{
+    top:61.5%;
+    left:57%;
+    padding-top:0%;
+    padding-bottom:6%;
+    padding-left:0%;
+    padding-right:16%;
+}
+#oneBedFullSink{
+    top:54%;
+    left:19%;
+    padding-top:0%;
+    padding-bottom:8%;
+    padding-left:0%;
+    padding-right:8%;
+}
+#oneBedFullTowel{
+    top:44%;
+    left:19%;
+    padding-top:0%;
+    padding-bottom:5%;
+    padding-left:0%;
+    padding-right:2%;
+}
+#oneBedFullCloseup{
+    top:40%;
+    left:27.5%;
+    padding-top:0%;
+    padding-bottom:19%;
+    padding-left:0%;
+    padding-right:16%;
+}
+/*One Bed No Cross CSS*/
+#hallwayExitMove-2-2-1{
+    top:92%;
+    left:95%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#oneBedAngleMove-1{
+    top:54%;
+    left:58%;
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:2%;
+    padding-right:2%;
+}
+#oneBedFullPillow-1{
+    top:61.5%;
+    left:57%;
+    padding-top:0%;
+    padding-bottom:6%;
+    padding-left:0%;
+    padding-right:16%;
+}
+#oneBedFullSink-1{
+    top:54%;
+    left:19%;
+    padding-top:0%;
+    padding-bottom:8%;
+    padding-left:0%;
+    padding-right:8%;
+}
+#oneBedFullTowel-1{
+    top:44%;
+    left:19%;
+    padding-top:0%;
+    padding-bottom:5%;
+    padding-left:0%;
+    padding-right:2%;
+}
+#oneBedFullCloseup-1{
+    top:40%;
+    left:27.5%;
+    padding-top:0%;
+    padding-bottom:19%;
+    padding-left:0%;
+    padding-right:16%;
+}
+/*One Bed Angle With Cross CSS*/
+#oneBedFullMove{
+    top:91%;
+    left:1%;
+    padding-top:0%;
+    padding-bottom:4%;
+    padding-left:0%;
+    padding-right:4%;
+}
+#oneBedAngleSink{
+    top:60%;
+    left:34%;
+    padding-top:0%;
+    padding-bottom:12%;
+    padding-left:0%;
+    padding-right:13%;
+}
+#oneBedAngleTowel{
+    top:53%;
+    left:48%;
+    padding-top:0%;
+    padding-bottom:6%;
+    padding-left:0%;
+    padding-right:5%;
+}
+#oneBedAngleCloseup{
+    top:40%;
+    left:54%;
+    padding-top:0%;
+    padding-bottom:30%;
+    padding-left:0%;
+    padding-right:30%;
+}
+#oneBedAngleCross{
+    top:10%;
+    left:32%;
+    padding-top:0%;
+    padding-bottom:9%;
+    padding-left:0%;
+    padding-right:6%;
+}
+/*One Bed Angle No Cross CSS*/
+#oneBedFullMove-1{
+    top:91%;
+    left:1%;
+    padding-top:0%;
+    padding-bottom:4%;
+    padding-left:0%;
+    padding-right:4%;
+}
+#oneBedAngleSink-1{
+    top:60%;
+    left:34%;
+    padding-top:0%;
+    padding-bottom:12%;
+    padding-left:0%;
+    padding-right:13%;
+}
+#oneBedAngleTowel-1{
+    top:53%;
+    left:48%;
+    padding-top:0%;
+    padding-bottom:6%;
+    padding-left:0%;
+    padding-right:5%;
+}
+#oneBedAngleCloseup-1{
+    top:40%;
+    left:54%;
+    padding-top:0%;
+    padding-bottom:30%;
+    padding-left:0%;
+    padding-right:30%;
+}
+/*Toilet Closeup With Hammer CSS*/
+#hammerClick{
+    top:55%;
+    left:27%;
+    padding-top:0%;
+    padding-bottom:4%;
+    padding-left:0%;
+    padding-right:4%; 
+}
+#bookClick{
+    top:33%;
+    left:65%;
+    padding-top:0%;
+    padding-bottom:14%;
+    padding-left:0%;
+    padding-right:15%; 
+}
+#closeupMove{
+   top:91%;
+    left:1%;
+    padding-top:0%;
+    padding-bottom:4%;
+    padding-left:0%;
+    padding-right:4%;  
+}
+/*Toilet Closeup No Hammer CSS*/
+#bookClick-1{
+    top:33%;
+    left:65%;
+    padding-top:0%;
+    padding-bottom:14%;
+    padding-left:0%;
+    padding-right:15%; 
+}
+#closeupMove-1{
+   top:91%;
+    left:1%;
+    padding-top:0%;
+    padding-bottom:4%;
+    padding-left:0%;
+    padding-right:4%;  
+}
+</style>
+</head>
+<body id='body'>
+    <div id="landingPage" style='display:block'>
+        <video autoplay muted id="myVideo" onended="document.getElementById('content').style.animationPlayState ='running'">
+            <source src="roomEntry.mp4" type="video/mp4">
+          </video>
+          <div class='content' id="content" style="background-color:rgba( 255, 255, 255, 1.0); margin-left: 200px; margin-right: 200px;margin-top: 50px;margin-bottom: 50px;padding: 50px; border-radius: 10px;">
+              <h1>ESCAPE ROOM - ONLINE</h1><br><br>
+              <h2> Escape The Prison</h2>
+              <div class='roomThumb'>
+              <img style='position:relative; max-width:100%; height:auto; border-radius:10px;' src='Landing.png'>
+              </div>
+                <button class='startButton' onclick='start()'>Play</button>
+          </div>
+
+    </div>
+<div id='textOutput' style='display:none'>
+    <p id=message>This is an example message</p>
+    <button id='interactButton' class='interactionButton' onclick='doInteract()'>Interact</button>
+    <button id='exitButton' class='interactionButton' onclick='doExit()'>Cancel</button>
+</div>
+<div id='inventory'style='display:none'>
+    <div class='textcolumn' id='inventoryText'>
+          <img class='inventoryText'  src="Inventory.png" >
+    </div>
+    <div class='column' id='2BedKey'>
+          <img class='inventoryItem'  src="2BedKey.png" >
+    </div>
+      <div class='column' id='BedRollClue'>
+          <img class='inventoryItem' src="BedRollClue.png">
+    </div>
+    <div class='column' id='BrokenPipe'>
+          <img class='inventoryItem'  src="BrokenPipe.png">
+    </div>
+      <div class='column' id='DirtyTowel'>
+          <img class='inventoryItem'  src="DirtyTowel.png";>
+    </div>
+    <div class='column' id='Hammer'>
+          <img class='inventoryItem'  src="Hammer.png" >
+    </div>
+      <div class='column' id='EnvelopeClue'>
+          <img class='inventoryItem'  src="EnvelopeClue.png">
+    </div>
+      <div class='column' id='NumberLetterCode' >
+          <img class='inventoryItem' src="NumberLetterCode.png" >
+    </div>
+      <div class='column' id='PillowClue'>
+          <img class='inventoryItem'  src="PillowClue.png">
+    </div>
+    <div class='column' id='Stepladder' >
+          <img class='inventoryItem'src="Stepladder.png" >
+    </div>
+      <div class='column'id='1BedKey'>
+          <img class='inventoryItem' src="1BedKey.png">
+    </div>
+      <div class='column' id='CrossScrewdriver' >
+          <img class='inventoryItem' src="CrossScrewdriver.png">
+    </div>
+    <div class='column' id='hintButton'>
+        <img class='inventoryItemHint' src='hintPlaceholder.png' onclick='getHintScreen();'>
+    </div>
+</div>
+<div id='hintScreen' style='display:none'>
+<div style='color:black;background-color: rgba(255,255,255,0.8);padding: 1%;  margin-top: 5%; margin-bottom: 0;margin-left: 15%; margin-right:15%; border-radius:10px;'>
+<h1>HINTS</h1>
+<p>Use the drop down menu to select the item you would like a hint about. As you discover more items, more hints will become available!<br> 
+Some items have more than one hint, if the first hint doesn't help, go on to the second, and so on.</p>
+<p> 
+<label>Item:</label>
+<select id="id_num">
+    <option value='Generic'>Generic</option>
+    <option value='Key Hanging on Hook'>Key Hanging on Hook</option>
+    <option value='KeyBox'>Locked Box</option>
+    <option value='Key Inside Locked Box'>Key Inside Locked Box</option>
+    <option value='Hammer'>Hammer</option>
+    <option value='Stepladder'>Stepladder</option>
+    <option value='Envelope'>Envelope</option>
+    <option value='NumberLetter'>Number Code</option>
+    <option value='Towel'>Dirty Towel</option>
+    <option value='Book'>Book</option>
+    <option value='Broken Light'>Broken Light</option>
+</select>
+<label>Hint Number:</label>
+<select id="id_choices">
+    <option value='1'>1</option>
+    <option value='2'>2</option>
+    <option value='3'>3</option>
+    <option value='4'>4</option>
+    <option value='5'>5</option>
+    <option value='6'>6</option>
+</select>
+</p>
+<p id='hintOutput'><br></p>
+<button class='hintGetButton' id='getHint' onclick='displayHint();'>Show Hint</button>
+
+<button class='hintLeaveButton' id='leaveHint' onclick='exitHintScreen();'>Go Back</button>
+</div>
+</div>
+<div id='checkBrowser' style='display:none'>
+<button class='clickableItemTest' id='test1'></button>
+<button class='clickableItemTest' id='test2'></button>
+<button class='clickableItemTest' id='test3'></button>
+<button class='clickableItemTest' id='test4'>If the three yellow squares have a black border, then your browser is suitable for this game. <br> If you're on a Mac, you may find it better to not have the game in Full Screen mode.<br>However, you may still experience some issues.</button>
+<button class='startButton' id='escapedButton' onclick='exitCheck();'style='margin-top:10%;'>Go Back</button>    
+</div>
+<div class='landing' id='landing'style='display:none'>
+<div class ='landingText' id='landingText'style='display:block'>
+    <h1> Escape the Prison</h1>
+<h3>Are you ready to have your wits put to the test in this online escape room?</h3>
+<h5>To check that your screen-size will let you play this, click on the button below.</h5>
+
+<button class='startButton'  onclick='checkBrowser()'>Check Screen Compatibility</button>
+<p>You will navigate using your mouse, by clicking on these yellow markers.</p>
+<img src=MovementMarker.png>
+<p>Interact with your surroundings by clicking on them.<br>
+You may want a pen and some paper to keep track of things<br>
+Solve the puzzles you are presented with to proceed.<br>
+<b>Each clue/item is only used once, but you will need to use all of them at some point</b><br>
+<p>No time limit, just try and escape.</p>
+
+<button class='startButton' id='startButton' onclick='startGame()'>Begin</button>
+</div>
+</div>
+<div class='landing' id='escaped'style='display:none'>
+<div class='landingText' id='escapedText'style='display:block'>
+    <h1>You Escaped!</h1>
+<h3>Congratulations! You were able to escape the prison!</h3>
+<p>I hope you had fun, and found the puzzles suitably challenging.</p>
+
+<p>Click the button below to Exit.</p>
+<button class='startButton' id='escapedButton' onclick='goHome()'>Leave</button>
+</div>
+</div>
+<div id='hallwayNoLight' style='display:none'>
+<button class='clickableItem' id='brokenLightHallway' onclick='brokenLight()'> </button>
+<button class='clickableItem' id='workingLight1' onclick='workingLight1()'> </button>
+<button class='clickableItem' id='workingLight2' onclick='workingLight2()'> </button>
+<button class='clickableItem' id='workingLight3' onclick='workingLight3()'> </button>
+<button class='clickableItem' id='hallwayMove' onclick='hallwayMove()'> </button>
+<button class='clickableItem' id='Cell1Door' onclick='Cell1Door()'> </button>
+<button class='clickableItem' id='righthandDoor' onclick='righthandDoor();'> </button>
+</div>
+<div id='hallwayExitNoLightKey' style='display:none'>
+<button class='clickableItem' id='hallwayExitMove' onclick='hallwayExitMove()'> </button>   
+<button class='clickableItem' id='brokenLightHallwayExit' onclick='brokenLight()'> </button>    
+<button class='clickableItem' id='Cell2Key' onclick='CellTwoKey()'> </button>  
+<button class='clickableItem' id='Keypad' onclick='keypadOn()'> </button>
+<button class='clickableItem' id='Cell1Door2' onclick='Cell1Door()'> </button>
+<button class='clickableItem' id='exitDoor' onclick='exitDoor()'> </button>
+<button class='clickableItem' id='workingLight1-2' onclick='workingLight1()'> </button>
+<button class='clickableItem' id='workingLight2-2' onclick='workingLight2()'> </button>
+<button class='clickableItem' id='workingLight3-2' onclick='workingLight3()'> </button>
+<button class='clickableItem' id='righthandDoor1' onclick='righthandDoor();'> </button>
+<button class='clickableItem' id='Cell2Door' onclick='Cell2Door();'> </button>
+</div>
+<div id='hallwayExitNoLightNoKey' style='display:none'>
+<button class='clickableItem' id='hallwayExitMove-1' onclick='hallwayExitMove()'> </button>   
+<button class='clickableItem' id='brokenLightHallwayExit-1' onclick='brokenLight()'> </button>    
+<button class='clickableItem' id='Keypad-1' onclick='keypadOn()'> </button>
+<button class='clickableItem' id='Cell1Door2-1' onclick='Cell1Door()'> </button>
+<button class='clickableItem' id='exitDoor-1' onclick='exitDoor()'> </button>
+<button class='clickableItem' id='workingLight1-2-1' onclick='workingLight1()'> </button>
+<button class='clickableItem' id='workingLight2-2-1' onclick='workingLight2()'> </button>
+<button class='clickableItem' id='workingLight3-2-1' onclick='workingLight3()'> </button>
+<button class='clickableItem' id='righthandDoor1-1' onclick='righthandDoor();'> </button>
+<button class='clickableItem' id='Cell2Door-1' onclick='Cell2Door();'> </button>
+</div>
+<div id='hallwayExitNoLightKeyGameOver' style='display:none'>
+<button class='clickableItem' id='hallwayExitMove-5' onclick='hallwayExitMove()'> </button>   
+<button class='clickableItem' id='brokenLightHallwayExit-5' onclick='brokenLight()'> </button>    
+<button class='clickableItem' id='Cell1Door2-5' onclick='Cell1Door()'> </button>
+<button class='clickableItem' id='exitDoor-5' onclick='gameOverMove()'> </button>
+<button class='clickableItem' id='workingLight1-2-5' onclick='workingLight1()'> </button>
+<button class='clickableItem' id='workingLight2-2-5' onclick='workingLight2()'> </button>
+<button class='clickableItem' id='workingLight3-2-5' onclick='workingLight3()'> </button>
+<button class='clickableItem' id='righthandDoor1-5' onclick='righthandDoor();'> </button>
+<button class='clickableItem' id='Cell2Door-5' onclick='Cell2Door();'> </button>
+</div>
+<div class='viewableItem' id='Cell2KeyDiv' style='display:none'>
+<img class='viewableItemImg'src="2BedKey.png">
+</div>
+<div id='keypadDiv' style='display:none'>
+<img id='keypadMain' class='keypadImg' src='KeypadNoLight.png' style='z-index:0;'>
+<button class='clickableItem' id='keyOne' onmousedown='keyOneDown();'onmouseup='keyOneUp();'style='z-index:2;'> </button>     
+<img id='keyOneDown'class='keypadImg' src='KeypadPress1.png' style='display:none; z-index:1;'> 
+<button class='clickableItem' id='keyTwo' onmousedown='keyTwoDown();'onmouseup='keyTwoUp();'style='z-index:2;'> </button>     
+<img id='keyTwoDown'class='keypadImg' src='KeypadPress2.png' style='display:none; z-index:1;'>    
+<button class='clickableItem' id='keyThree' onmousedown='keyThreeDown();'onmouseup='keyThreeUp();'style='z-index:2;'> </button>     
+<img id='keyThreeDown'class='keypadImg' src='KeypadPress3.png' style='display:none; z-index:1;'>  
+<button class='clickableItem' id='keyFour' onmousedown='keyFourDown();'onmouseup='keyFourUp();'style='z-index:2;'> </button>     
+<img id='keyFourDown'class='keypadImg' src='KeypadPress4.png' style='display:none; z-index:1;'> 
+<button class='clickableItem' id='keyFive' onmousedown='keyFiveDown();'onmouseup='keyFiveUp();'style='z-index:2;'> </button>     
+<img id='keyFiveDown'class='keypadImg' src='KeypadPress5.png' style='display:none; z-index:1;'>    
+<button class='clickableItem' id='keySix' onmousedown='keySixDown();'onmouseup='keySixUp();'style='z-index:2;'> </button>     
+<img id='keySixDown'class='keypadImg' src='KeypadPress6.png' style='display:none; z-index:1;'>  
+<button class='clickableItem' id='keySeven' onmousedown='keySevenDown();'onmouseup='keySevenUp();'style='z-index:2;'> </button>     
+<img id='keySevenDown'class='keypadImg' src='KeypadPress7.png' style='display:none; z-index:1;'> 
+<button class='clickableItem' id='keyEight' onmousedown='keyEightDown();'onmouseup='keyEightUp();'style='z-index:2;'> </button>     
+<img id='keyEightDown'class='keypadImg' src='KeypadPress8.png' style='display:none; z-index:1;'>    
+<button class='clickableItem' id='keyNine' onmousedown='keyNineDown();'onmouseup='keyNineUp();'style='z-index:2;'> </button>     
+<img id='keyNineDown'class='keypadImg' src='KeypadPress9.png' style='display:none; z-index:1;'>  
+<button class='clickableItem' id='keyStar' onmousedown='keyStarDown();'onmouseup='keyStarUp();'style='z-index:2;'> </button>     
+<img id='keyStarDown'class='keypadImg' src='KeypadPressSTAR.png' style='display:none; z-index:1;'> 
+<button class='clickableItem' id='keyZero' onmousedown='keyZeroDown();'onmouseup='keyZeroUp();'style='z-index:2;'> </button>     
+<img id='keyZeroDown'class='keypadImg' src='KeypadPress0.png' style='display:none; z-index:1;'>    
+<button class='clickableItem' id='keyHash' onmousedown='keyHashDown();'onmouseup='keyHashUp();'style='z-index:2;'> </button>     
+<img id='keyHashDown'class='keypadImg' src='KeypadPressHASH.png' style='display:none; z-index:1;'>  
+<img id='keyGreenLight'class='keypadImg' src='KeypadGreenLight.png' style='display:none; z-index:1;'>  
+<img id='keyRedLight'class='keypadImg' src='KeypadRedLight.png' style='display:none; z-index:1;'>  
+</div>
+<div id='twoBedWithLetter' style='display:none'>
+<button class='clickableItem' id='envelope' onclick='envelope()'> </button>
+<button class='clickableItem' id='twoBedOut' onclick='twoBedOutMove()'> </button>   
+<button class='clickableItem' id='pillowLeft' onclick='pillowLeft()'> </button>
+<button class='clickableItem' id='toilet' onclick='toilet()'> </button>
+<button class='clickableItem' id='bedRoll' onclick='bedRollClue()'> </button>
+<button class='clickableItem' id='pillowTop' onclick='pillowTopClue()'> </button>
+<button class='clickableItem' id='keyBox' onclick='keyBox()'> </button>
+</div>
+<div id='twoBedNoLetter' style='display:none'>
+<button class='clickableItem' id='twoBedOut-1' onclick='twoBedOutMove()'> </button>   
+<button class='clickableItem' id='pillowLeft-1' onclick='pillowLeft()'> </button>
+<button class='clickableItem' id='toilet-1' onclick='toilet()'> </button>
+<button class='clickableItem' id='bedRoll-1' onclick='bedRollClue()'> </button>
+<button class='clickableItem' id='pillowTop-1' onclick='pillowTopClue()'> </button>
+<button class='clickableItem' id='keyBox-1' onclick='keyBox()'> </button>
+</div>
+<div id='keyBoxDiv' style='display:none'>
+<img id='keyBoxImg' src='KeyBox.png' style='z-index:0;'>
+<form >
+    <input style='margin-bottom: 1%; padding: 2px;' type="text"id='code' >
+</form>
+<button class='keyBoxSubmit' onclick='enterCode();'>Enter Code</button>
+<button class='keyBoxSubmit' onclick="exitKeyBox()">Exit</button>
+</div>
+<div class='viewableItem' id='EnvelopeDiv' style='display:none'>
+<img class='viewableItemImg' src="EnvelopeClue.png">
+</div>
+<div class='viewableItem' id='LetterDiv' style='display:none'>
+<img class='viewableItemImg'src="NumberLetterCode.png">
+</div>
+<div class='viewableItem' id='BedRollClueDiv' style='display:none'>
+<img class='viewableItemImg'src="BedRollClue.png">
+</div>
+<div class='viewableItem' id='PillowClueDiv' style='display:none'>
+<img class='viewableItemImg'src="PillowClue.png">
+</div>
+<div class='viewableItem' id='Cell1KeyDiv' style='display:none'>
+<img class='viewableItemImg'src="1BedKey.png">
+</div>
+<div id='outTwoBedWithTowelNoHole' style='display:none;'>
+<button class='clickableItem' id='hallwayExitMove-2' onclick='hallwayMove()'> </button> 
+<button class='clickableItem' id='Cell2InMove' onclick='Cell2InMove()'></button>
+<button class='clickableItem' id='dirtyTowelClue' onclick='dirtyTowelClue()'> </button>
+<button class='clickableItem' id='toiletViewTwo' onclick='toilet()'> </button>
+<button class='clickableItem' id='stepladderClick' onclick='stepladderClick()'> </button>
+<button class='clickableItem' id='sinkClick' onclick='sinkClick()'> </button>
+</div>
+<div id='outTwoBedWithTowelWithHole' style='display:none;'>
+<button class='clickableItem' id='hallwayExitMove-2-4' onclick='hallwayMove()'> </button> 
+<button class='clickableItem' id='Cell2InMove-2' onclick='Cell2InMove()'></button>
+<button class='clickableItem' id='dirtyTowelClue-2' onclick='dirtyTowelClue()'> </button>
+<button class='clickableItem' id='toiletViewTwo-2' onclick='toilet()'> </button>
+<button class='clickableItem' id='sinkClick-2' onclick='sinkClick()'> </button>
+</div>
+<div id='outTwoBedNoTowelNoHole' style='display:none;'>
+<button class='clickableItem' id='hallwayExitMove-2-1' onclick='hallwayMove()'> </button> 
+<button class='clickableItem' id='Cell2InMove-1' onclick='Cell2InMove()'></button>
+<button class='clickableItem' id='toiletViewTwo-1' onclick='toilet()'> </button>
+<button class='clickableItem' id='stepladderClick-1' onclick='stepladderClick()'> </button>
+<button class='clickableItem' id='sinkClick-1' onclick='sinkClick()'> </button>
+</div>
+<div id='outTwoBedNoTowelWithHole' style='display:none;'>
+<button class='clickableItem' id='hallwayExitMove-2-3' onclick='hallwayMove()'> </button> 
+<button class='clickableItem' id='Cell2InMove-3' onclick='Cell2InMove()'></button>
+<button class='clickableItem' id='toiletViewTwo-3' onclick='toilet()'> </button>
+<button class='clickableItem' id='sinkClick-3' onclick='sinkClick()'> </button>
+</div>
+<div class='viewableItem' id='DirtyTowelDiv' style='display:none'>
+<img class='viewableItemImg'src="DirtyTowel.png">
+</div>
+<div class='viewableItem' id='StepladderDiv' style='display:none'>
+<img class='viewableItemImg' src="Stepladder.png">
+</div>
+<div class='viewableItem' id='PipeDiv' style='display:none'>
+<img class='viewableItemImg' src="BrokenPipe.png">
+</div>
+<div id='sinkCloseupDiv' style='display:none'>
+    <img id='sinkCloseupImg' src='SinkCloseup.png' style='z-index:0;'>
+    <button class='keyBoxSubmit' onclick="exitSink()">Exit</button>
+    <button class='clickableItem' id='tapClick' onclick='tapClick()'> </button>
+</div>
+<div id='oneBedWithCross' style='display:none;'>
+<button class='clickableItem' id='hallwayExitMove-2-2' onclick='hallwayExitMove()'> </button> 
+<button class='clickableItem' id='oneBedAngleMove' onclick='oneBedAngleMove()'> </button> 
+<button class='clickableItem' id='oneBedFullSink' onclick='oneBedSink()'> </button> 
+<button class='clickableItem' id='oneBedFullTowel' onclick='oneBedTowel()'> </button> 
+<button class='clickableItem' id='oneBedFullPillow' onclick='oneBedPillow()'> </button> 
+<button class='clickableItem' id='oneBedFullCloseup' onclick='toiletCloseupMove()'> </button> 
+</div>
+<div id='oneBedNoCross' style='display:none;'>
+<button class='clickableItem' id='hallwayExitMove-2-2-1' onclick='hallwayExitMove()'> </button> 
+<button class='clickableItem' id='oneBedAngleMove-1' onclick='oneBedAngleMove()'> </button> 
+<button class='clickableItem' id='oneBedFullSink-1' onclick='oneBedSink()'> </button> 
+<button class='clickableItem' id='oneBedFullTowel-1' onclick='oneBedTowel()'> </button> 
+<button class='clickableItem' id='oneBedFullPillow-1' onclick='oneBedPillow()'> </button> 
+<button class='clickableItem' id='oneBedFullCloseup-1' onclick='toiletCloseupMove()'> </button> 
+</div>
+<div id='oneBedAngleWithCross' style='display:none;'>
+<button class='clickableItem' id='oneBedFullMove' onclick='oneBedFullMove()'> </button> 
+<button class='clickableItem' id='oneBedAngleSink' onclick='oneBedSink()'> </button> 
+<button class='clickableItem' id='oneBedAngleTowel' onclick='oneBedTowel()'> </button> 
+<button class='clickableItem' id='oneBedAngleCloseup' onclick='toiletCloseupMove()'> </button> 
+<button class='clickableItem' id='oneBedAngleCross' onclick='crossClick()'> </button>
+
+</div>
+<div class='viewableItem' id='CrossDiv' style='display:none'>
+<img class='viewableItemImg' src="Cross.png">
+</div>
+<div class='viewableItem' id='CrossScrewdriverDiv' style='display:none'>
+<img class='viewableItemImg' src="CrossScrewdriver.png">
+</div>
+<div id='oneBedAngleNoCross' style='display:none;'>
+<button class='clickableItem' id='oneBedFullMove-1' onclick='oneBedFullMove()'> </button> 
+<button class='clickableItem' id='oneBedAngleSink-1' onclick='oneBedSink()'> </button> 
+<button class='clickableItem' id='oneBedAngleTowel-1' onclick='oneBedTowel()'> </button> 
+<button class='clickableItem' id='oneBedAngleCloseup-1' onclick='toiletCloseupMove()'> </button> 
+
+
+</div>
+<div id='toiletCloseupWithHammer' style='display:none;'>
+<button class='clickableItem' id='closeupMove' onclick='oneBedFullMove()'> </button> 
+<button class='clickableItem' id='hammerClick' onclick='hammerClick()'> </button>
+<button class='clickableItem' id='bookClick' onclick='bookClick()'> </button>
+</div>
+<div id='toiletCloseupNoHammer' style='display:none;'>
+<button class='clickableItem' id='closeupMove-1' onclick='oneBedFullMove()'> </button> 
+<button class='clickableItem' id='bookClick-1' onclick='bookClick()'> </button>
+</div>
+<div class='viewableItem' id='HammerDiv' style='display:none'>
+<img class='viewableItemImg' src="Hammer.png">
+</div>
+<div class='viewableItemBook' id='BookDiv' style='display:none'>
+<img class='viewableItemImgBook' src="BookCloseup.png">
+</div>
+<div class='lightCloseupDiv' id='lightCloseupWithDiffuserDiv' style='display:none'>
+    <img class='lightCloseupImg' src='LampCloseupWithDiffuser.png' style='z-index:0;'>
+    <button class='keyBoxSubmit' onclick="exitLight()">Exit</button>
+    <button class='clickableItem' id='screwOneClick' onclick='screwClick()'> </button>
+    <button class='clickableItem' id='screwTwoClick' onclick='screwClick()'> </button>
+</div>
+<div class='lightCloseupDiv' id='lightCloseupNoDiffuserDiv' style='display:none'>
+    <img class='lightCloseupImg' src='LampCloseupNoDiffuser.png' style='z-index:0;'>
+    <button class='keyBoxSubmit' onclick="exitLight()">Exit</button>
+    </div>
+</body>
+<script>
+var hintScreen = false;
+var lightFixed=false;
+var interact=false;
+var exit=false;
+var first=false;
+var keyCode = "";
+var keyCodeAnswer= '7882#';
+var keypadCheck = false;
+var keyBoxCheck = false;
+var keyBoxAnswer = 1694;
+var gameOver=false;
+var diffuser=false;
+//inventory variables
+var Cell1Key=false;
+var Cell2Key=false;
+var letter=false;
+var bedRoll=false;
+var pillowTop=false;
+var towel=false;
+var hole=false;
+var hammer=false;
+var stepladder=false;
+var pipe=false;
+var cross=false;
+var lockedBox=false;
+var book = false;
+var light = false;
+//Listeners+Variables
+var numbers = document.getElementById('id_num');
+var choices = document.getElementById('id_choices');
+numbers.addEventListener('change',getHintType,false);
+//choices.addEventListener('change',getHintType,false);
+window.addEventListener('load',getHintType,false);
+//Helper Functions
+function getHintScreen(){
+ //Deals with which hint options to display   
+    if(hintScreen==true){
+    document.getElementById('hintScreen').style.display='block'
+    var item1 =['Generic'];
+    var item2 =['Key Hanging on Hook'];
+    var item3 =['Locked Box'];
+    var item4 =['Key Inside Locked Box'];
+    var item5 =['Hammer'];
+    var item6 =['Stepladder'];
+    var item7 =['Envelope'];
+    var item8 =['Number Code'];
+    var item9 =['Dirty Towel'];
+    var item10 =['Book'];
+    var item11 =['Broken Light'];
+    var oldItems = numbers.getElementsByTagName('option');
+    while (oldItems.length > 0) {
+        numbers.removeChild(oldItems[0]);
+    }
+    var optionSet = item1;
+    if (Cell2Key==true){
+      optionSet = optionSet.concat(item2);
+    }
+    if (lockedBox==true){
+      optionSet = optionSet.concat(item3);
+    }
+    if (Cell1Key==true){
+        optionSet = optionSet.concat(item4);
+    }
+    if (hammer==true){
+      optionSet = optionSet.concat(item5);
+    }
+    if (stepladder==true){
+      optionSet = optionSet.concat(item6);
+    }
+    if (letter==true){
+        optionSet = optionSet.concat(item7).concat(item8);
+    }    
+    if (towel==true){
+      optionSet = optionSet.concat(item9);
+    }
+    if (book==true){
+      optionSet = optionSet.concat(item10);
+    }    
+    if (light==true){
+      optionSet = optionSet.concat(item11);
+    }    
+    
+    for (var j = 0; j < optionSet.length; j++) {
+        var option = document.createElement('option');
+        option.setAttribute('value',optionSet[j]);
+        option.textContent = optionSet[j];
+        numbers.appendChild(option);
+    }
+    }
+    else{
+    return;
+    }
+}
+function getHintType(){
+    
+    //Deals with the correct numbers being displayed based on item choice
+    var optionSet1 = ['1'];
+    var optionSet2 = ['1', '2'];
+    var optionSet3 = ['1', '2','3'];
+    var optionSet4 = ['1', '2','3','4'];
+    var optionSet5 = ['1', '2','3','4','5'];
+    var optionSet6 = ['1', '2','3','4','5','6'];
+    var oldOptions = choices.getElementsByTagName('option');
+    var selected = numbers.options[numbers.selectedIndex].text;
+
+    while (oldOptions.length > 0) {
+        choices.removeChild(oldOptions[0]);
+    }
+    switch (selected) {
+        case('Generic') : var optionSet = optionSet1; break;
+        case('Key Hanging on Hook') : optionSet = optionSet1; break;
+        case('Locked Box') : optionSet = optionSet3; break;
+        case('Key Inside Locked Box') : optionSet = optionSet2; break;
+        case('Hammer') : var optionSet = optionSet2; break;
+        case('Stepladder') : optionSet = optionSet2; break;
+        case('Envelope') : optionSet = optionSet2; break;
+        case('Number Code') : optionSet = optionSet4; break;
+        case('Dirty Towel') : optionSet = optionSet5; break;
+        case('Book') : optionSet = optionSet6; break;
+        case('Broken Light') : optionSet = optionSet4; break;
+    }
+
+    for (var i = 0; i < optionSet.length; i++) {
+        var option = document.createElement('option');
+        option.setAttribute('value',optionSet[i]);
+        option.textContent = optionSet[i];
+        choices.appendChild(option);
+    }
+}
+function displayHint(){
+    var hintType = document.getElementById('id_num').value;
+    var hintNumber = document.getElementById('id_choices').value;
+    console.log(hintType + ' ' + hintNumber);
+    var genericHint = [" ",'Look around using the yellow dots, try and find something to open a cell door.'];
+    var key1Hint = [" ",'That key will open a cell door.'];
+    var lockedBoxHint = [" ","Look around the cell to find a clue to help you figure out the code.","Look in the top bunk's pillow.","Only one number can be multiplied by six and still give a single digit number."];
+    var key2Hint = [" ","The new key will open another cell.","Check the toilet of the single bed cell."];
+    var hammerHint = [" ","Look around for something you would need to destroy to see inside of.","The wall in the bunk bed cell has been recently repaired, and it sounds hollow."];
+    var stepladderHint = [" ","Is there anything on the ceiling that you can have a look at?","Use the stepladder to look at the broken light on the ceiling."];
+    var envelopeHint = [" ","The envelope has a clue about the keypad order.","The envelope tells you that the fourth number of the code can be found in a light."];
+    var numberCodeHint = [" ", "This clue tells you what the second number of the final code is.","Each new line is a new word.","There aren't any numbers above 26.","It's a number to letter code, A=1, B=2 etc."];
+    var towelHint = [" ", "The towel tells you what the first number of the final code is.","You've got a towel to dry your hands, have you tried washing them?","Go and click on the taps of the sink in the bunk bed cell.","The pipe has a clue scratched onto it that relate to the towel.","Connect the coloured dots on the towel according to the pipe's instructions."];
+    var bookHint = [" ","The book tells you what the 3rd number of the final code is.","The book has a clue that goes alongside it. Check the bunk bed cell.","Look in the rolled up mattress.","What does the list of cities have that the book also has?","The list Of cities Is a List of Alternate capitals","Read down the first letter of each line, only pay attention to the capital letters"];
+    var lightHint = [" ","Have you picked up everything from the single bed cell.","Go and pick up the cross off the wall of the single bed cell.","The light tells you what the 4th number of the final code is.","Use the cross/screwdriver to unscrew the diffuser plate from the broken light."];
+ 
+if (hintType == 'Generic'){
+    showHint(genericHint[hintNumber]);
+    return;
+}
+if (hintType == 'Key Hanging on Hook'){
+    showHint(key1Hint[hintNumber]);
+    return;
+}
+if (hintType == 'Locked Box'){
+    showHint(lockedBoxHint[hintNumber]);
+    return;
+}
+if (hintType == 'Key Inside Locked Box'){
+    showHint(key2Hint[hintNumber]);
+    return;
+}
+if (hintType == 'Key Inside Locked Box'){
+    showHint(key2Hint[hintNumber]);
+    return;
+}
+if (hintType == 'Hammer'){
+    showHint(hammerHint[hintNumber]);
+    return;
+}
+if (hintType == 'Stepladder'){
+    showHint(stepladderHint[hintNumber]);
+    return;
+}
+if (hintType == 'Envelope'){
+    showHint(envelopeHint[hintNumber]);
+    return;
+}
+if (hintType == 'Number Code'){
+    showHint(numberCodeHint[hintNumber]);
+    return;
+}
+if (hintType == 'Dirty Towel'){
+    showHint(towelHint[hintNumber]);
+    return;
+}
+if (hintType == 'Book'){
+    showHint(bookHint[hintNumber]);
+    return;
+}
+if (hintType == 'Broken Light'){
+    showHint(lightHint[hintNumber]);
+    return;
+}
+  return;
+}
+function showHint(message){
+    document.getElementById("hintOutput").innerHTML = message;
+    return;
+}
+function exitHintScreen(){
+     document.getElementById("hintOutput").innerHTML = "<br>";
+    document.getElementById('hintScreen').style.display='none'
+}
+function checkBrowser(){
+    var body= document.getElementById("body")
+        if (body.requestFullscreen) {
+        body.requestFullscreen();
+      } else if (body.mozRequestFullScreen) { /* Firefox */
+        elem.mozRequestFullScreen();
+      } else if (body.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        body.webkitRequestFullscreen();
+      } else if (body.msRequestFullscreen) { /* IE/Edge */
+        body.msRequestFullscreen();
+      }
+       document.getElementById("checkBrowser").style.display = "block";
+       return;
+       
+}
+function exitCheck(){
+     document.getElementById("checkBrowser").style.display = "none";
+     return;
+}
+function startGame(){
+        //Clear Memory
+        sessionStorage.clear();
+        //Fullscreen The Page
+        var body= document.getElementById("body")
+        if (body.requestFullscreen) {
+        body.requestFullscreen();
+      } else if (body.mozRequestFullScreen) { /* Firefox */
+        elem.mozRequestFullScreen();
+      } else if (body.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        body.webkitRequestFullscreen();
+      } else if (body.msRequestFullscreen) { /* IE/Edge */
+        body.msRequestFullscreen();
+      }
+      //Hide the landing page and show the text output and the inventory
+        document.getElementById("landing").style.display = "none";
+        document.getElementById("inventory").style.display = "block";
+        document.getElementById("textOutput").style.display = "block";
+        sendText("Hello, I'm your thought stream.");
+        setTimeout(function(){ sendText("Above me is your inventory. Hover over items to enlarge them.") }, 4000);
+        setTimeout(function(){ sendText("If you need a hint at any point, click the button at the end of your inventory.") }, 8000);
+        setTimeout(function(){  document.getElementById("hintButton").style.display = "block"; }, 8000);
+        setTimeout(function(){ sendText("When you click on something in the game, I will probably tell you some information about that object.") }, 12000);
+        setTimeout(function(){ sendText("When a new thought appears, I'll flash green to get your attention.") }, 16000);
+        setTimeout(function(){ sendText("Sometimes, you will need to make a decision, then I'll give you buttons to choose from...") }, 20000);
+        setTimeout(function(){sendText("Like this!")},24000);
+        setTimeout(function(){sendInteraction('OK')},24000);
+        setTimeout(function(){hintScreen=true;},24000);
+        setTimeout(checkInteract,2050);
+}
+function checkInteract(){
+    if (interact==true){
+        console.log('interact');
+        clearText();
+        setTimeout(function(){ sendText("Good Luck!") }, 100);
+        document.getElementById("hallwayNoLight").style.display = "block";
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        document.getElementById("hallwayNoLight").style.display = "block";
+        console.log('exit');
+        clearText()
+        exit=false;
+        return;
+    }
+    else{
+        setTimeout(checkInteract,100);
+    }
+    
+    
+}
+function sendText(text){
+    document.getElementById("textOutput").style.display = "block";
+    document.getElementById("exitButton").style.display = "none";
+    document.getElementById("interactButton").style.display = "none";
+    document.getElementById("textOutput").style.borderColor = "green"; 
+    setTimeout(function(){  document.getElementById("textOutput").style.borderColor = "#333333"; }, 500);
+    setTimeout(function(){  document.getElementById("textOutput").style.borderColor = "green"; }, 1000);
+    setTimeout(function(){  document.getElementById("textOutput").style.borderColor = "#333333"; }, 1500);
+    document.getElementById("message").innerHTML = text;
+    //setTimeout(function(){ document.getElementById("message").innerHTML = "";}, duration);
+    return;
+}
+function clearText(){
+    document.getElementById("message").innerHTML = "";
+    return
+}
+function sendInteraction(buttonText){
+    onDimBackground()
+    document.getElementById("textOutput").style.display = "block";
+    document.getElementById("exitButton").style.display = "block";
+    document.getElementById("interactButton").style.display = "block";
+    document.getElementById("interactButton").innerHTML = buttonText;
+    return;
+}
+function onDimBackground(){
+    document.getElementById("hallwayNoLight").style.opacity = 0.2;
+
+    document.getElementById("hallwayExitNoLightKey").style.opacity = 0.2;
+     document.getElementById("hallwayExitNoLightKeyGameOver").style.opacity = 0.2;
+     document.getElementById("hallwayExitNoLightNoKey").style.opacity = 0.2;
+     document.getElementById("twoBedWithLetter").style.opacity = 0.2;
+       document.getElementById("twoBedNoLetter").style.opacity = 0.2;
+       document.getElementById("outTwoBedWithTowelNoHole").style.opacity = 0.2;
+        document.getElementById("outTwoBedNoTowelNoHole").style.opacity = 0.2;
+        document.getElementById("outTwoBedWithTowelWithHole").style.opacity = 0.2;
+        document.getElementById("outTwoBedNoTowelWithHole").style.opacity = 0.2;
+         document.getElementById("oneBedWithCross").style.opacity = 0.2;
+          document.getElementById("oneBedNoCross").style.opacity = 0.2;
+          document.getElementById("oneBedAngleWithCross").style.opacity = 0.2;
+          document.getElementById("oneBedAngleNoCross").style.opacity = 0.2;
+          document.getElementById("toiletCloseupWithHammer").style.opacity = 0.2;
+          document.getElementById("toiletCloseupNoHammer").style.opacity = 0.2;
+          
+}
+function offDimBackground(){
+    document.getElementById("hallwayNoLight").style.opacity = 1.0;
+ document.getElementById("hallwayExitNoLightKeyGameOver").style.opacity = 1.0;
+    document.getElementById("hallwayExitNoLightKey").style.opacity = 1.0;
+    document.getElementById("hallwayExitNoLightNoKey").style.opacity = 1.0;
+    document.getElementById("twoBedWithLetter").style.opacity=1.0;
+    document.getElementById("twoBedNoLetter").style.opacity = 1.0;
+    document.getElementById("outTwoBedWithTowelNoHole").style.opacity = 1.0;
+    document.getElementById("outTwoBedNoTowelNoHole").style.opacity = 1.0;   
+    document.getElementById("outTwoBedWithTowelWithHole").style.opacity = 1.0;
+    document.getElementById("outTwoBedNoTowelWithHole").style.opacity = 1.0;
+      document.getElementById("oneBedWithCross").style.opacity = 1.0;
+        document.getElementById("oneBedNoCross").style.opacity = 1.0;
+        document.getElementById("oneBedAngleWithCross").style.opacity = 1.0;
+        document.getElementById("oneBedAngleNoCross").style.opacity = 1.0;
+        document.getElementById("toiletCloseupWithHammer").style.opacity = 1.0;
+     document.getElementById("toiletCloseupNoHammer").style.opacity = 1.0;
+}
+function doInteract(){
+    interact=true;
+    offDimBackground()
+    document.getElementById("exitButton").style.display = "none";
+    document.getElementById("interactButton").style.display = "none";
+    return;
+}
+function doExit(){
+    exit = true;
+    offDimBackground()
+    document.getElementById("exitButton").style.display = "none";
+    document.getElementById("interactButton").style.display = "none";
+    return;
+}
+function goHome(){
+     window.versions.quit();
+}
+function gameOverMove(){
+    if (first==false){
+    sendText('Leave the room and escape?');
+    sendInteraction('Escape');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        allRoomsOff()
+        document.getElementById("escaped").style.display = "block";  
+        document.getElementById("inventory").style.display = "none";  
+        document.getElementById("textOutput").style.display = "none";  
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(gameOverMove,100);
+    }
+      
+    
+    
+}
+//Room Move Functions
+function allRoomsOff(){
+    document.getElementById("hallwayNoLight").style.display = "none"; 
+ document.getElementById("hallwayExitNoLightKeyGameOver").style.display="none";
+    document.getElementById("hallwayExitNoLightKey").style.display = "none"; 
+    document.getElementById("hallwayExitNoLightNoKey").style.display = "none";
+    document.getElementById("twoBedWithLetter").style.display = "none";
+    document.getElementById("twoBedNoLetter").style.display = "none";
+    document.getElementById("outTwoBedWithTowelNoHole").style.display="none";
+    document.getElementById("outTwoBedNoTowelNoHole").style.display="none";
+        document.getElementById("outTwoBedWithTowelWithHole").style.display="none";
+    document.getElementById("outTwoBedNoTowelWithHole").style.display="none";
+    document.getElementById("oneBedWithCross").style.display="none";
+    document.getElementById("oneBedNoCross").style.display="none";
+    document.getElementById("oneBedAngleWithCross").style.display="none";
+    document.getElementById("oneBedAngleNoCross").style.display="none";
+    document.getElementById("toiletCloseupWithHammer").style.display="none";
+        document.getElementById("toiletCloseupNoHammer").style.display="none";
+}
+function goHallway(){
+    allRoomsOff();
+   
+        //light off
+      document.getElementById("hallwayNoLight").style.display = "block";  
+    
+}
+function goHallwayExit(){
+    allRoomsOff();
+  
+   if(lightFixed==false && Cell2Key==true && gameOver==false){
+        //light off no key
+        document.getElementById("hallwayExitNoLightNoKey").style.display = "block"; 
+    }
+    else if(lightFixed==false && Cell2Key==false && gameOver==false){
+    //light off with key
+    document.getElementById("hallwayExitNoLightKey").style.display = "block";    
+    }
+    else if(gameOver==true)
+    {
+        document.getElementById("hallwayExitNoLightKeyGameOver").style.display = "block";
+        return
+    }
+        
+}
+function go2Bed(){
+    allRoomsOff();
+    if (letter==false){
+    //With letter
+    
+    document.getElementById("twoBedWithLetter").style.display = "block";
+    return;
+    }
+    else if(letter==true)
+    {
+   document.getElementById("twoBedNoLetter").style.display = "block";
+    return;
+    }
+}
+function goTwoBedOut(){
+     allRoomsOff();
+     if (towel==false && hole==false){
+     document.getElementById("outTwoBedWithTowelNoHole").style.display="block";
+     return;
+     }
+       if (towel==false && hole==true){
+     document.getElementById("outTwoBedWithTowelWithHole").style.display="block";
+     return;
+     }
+     else if (towel==true && hole==false){
+     document.getElementById("outTwoBedNoTowelNoHole").style.display="block";
+     return;
+     }
+     else if (towel==true && hole==true){
+     document.getElementById("outTwoBedNoTowelWithHole").style.display="block";
+     return;
+     }
+ }
+function goOneBedFull(){
+    allRoomsOff();
+    if(cross==false){
+           document.getElementById("oneBedWithCross").style.display="block"; 
+           return;
+    }
+    else{
+        document.getElementById("oneBedNoCross").style.display="block"; 
+        return;
+    }
+}
+function goOneBedAngle(){
+    allRoomsOff();
+    if(cross==false){
+    document.getElementById("oneBedAngleWithCross").style.display="block";
+    return;
+    }
+    else{
+         document.getElementById("oneBedAngleNoCross").style.display="block";
+    }
+
+}
+function goToiletCloseup(){
+    allRoomsOff();
+    if (hammer==false){
+        document.getElementById("toiletCloseupWithHammer").style.display="block";
+        return;
+    }
+    else{
+        document.getElementById("toiletCloseupNoHammer").style.display="block";
+        return;
+    }
+        
+}
+//Hallway Interactions
+function brokenLight(){
+    if(stepladder==false){
+    first=false;
+    sendText("It's broken, I can't see any other details from down here.");
+    return;
+    }
+    else{
+        first=false;
+        showLight();
+    }
+    
+    
+}
+function workingLight1(){
+    first=false;
+    sendText("There's nothing here.");
+    return;
+}
+function workingLight2(){
+    first=false;
+    sendText("There's nothing to see here.");
+    return;
+}
+function workingLight3(){
+    first=false;
+    sendText("There's nothing of interest here.");
+    return;
+}
+function hallwayMove(){
+    if (first==false){
+    sendText('Move Here?');
+    sendInteraction('Move');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        goHallwayExit();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(hallwayMove,100);
+    }
+    
+}    
+function Cell1Door(){
+    if (Cell1Key==true){
+    if (first==false){
+    sendText('Unlock the door and go in?');
+    sendInteraction('Unlock');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("hallwayExitNoLightKey").style.display = "none";
+        goOneBedFull();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(Cell1Door,100);
+    }
+}
+    if (Cell1Key==false){
+    first=false;
+    sendText("It's locked, I need a key.");
+    return; 
+    }
+}
+function righthandDoor(){
+     first=false;
+    sendText("It's locked, but there's nothing in here anyway.");
+    return;
+}  
+//Hallway Exit Interactions
+function hallwayExitMove(){
+    
+    if (first==false){
+    sendText('Move Here?');
+    sendInteraction('Move');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        goHallway();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(hallwayExitMove,100);
+    }
+    
+} 
+function CellTwoKey(){
+    if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("Cell2KeyDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText('Pick up Key?');
+        sendInteraction('Pick Up');
+        CellTwoKeyPickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+
+        document.getElementById("Cell2KeyDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(CellTwoKey,100);
+    }
+}
+function CellTwoKeyPickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("Cell2KeyDiv").style.display = "none";
+        Cell2Key=true;
+        goHallwayExit();
+        document.getElementById("2BedKey").style.display = "block";
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("Cell2KeyDiv").style.display = "none";
+        goHallwayExit();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(CellTwoKeyPickUp,100);
+    }
+
+}
+function keypadOn(){
+        
+    if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("keypadDiv").style.display = "block";
+        document.getElementById("hallwayExitNoLightKey").style.display = "none";
+        first=false;
+        interact=false;
+        sendText('This keypad opens the exit');
+        keypadOff();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(keypadOn,100);
+    }
+    
+}
+function exitDoor(){
+        first=false;
+    sendText("That's the exit. It looks like I can open it by putting a code into the keypad on the left.");
+    return;
+}
+function Cell2Door(){
+    if (Cell2Key==true){
+    if (first==false){
+    sendText('Unlock the door and go in?');
+    sendInteraction('Unlock');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        go2Bed();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(Cell2Door,100);
+    }
+}
+    if (Cell2Key==false){
+    first=false;
+    sendText("It's locked, I need a key.");
+    return; 
+    }
+}
+//2 Bed Interactions
+function envelope(){
+    if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("EnvelopeDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText('Open Envelope?');
+        sendInteraction('Open');
+        envelopePickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("EnvelopeDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(envelope,100);
+    }
+}
+function envelopePickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("EnvelopeDiv").style.display = "none";
+        letter=true;
+        go2Bed();
+        document.getElementById("EnvelopeClue").style.display = "block";
+        
+        first=false;
+        interact=false;
+        readLetter();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("EnvelopeDiv").style.display = "none";
+        go2Bed();
+        
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(envelopePickUp,100);
+    }
+
+}
+function readLetter(){
+     if (first==false){
+    sendText("It's a letter, written in some kind of code...");
+    sendInteraction('OK');
+    document.getElementById("LetterDiv").style.display = "block";
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("LetterDiv").style.display = "none";
+        first=false;
+        interact=false;
+        document.getElementById("NumberLetterCode").style.display = "block";
+       
+        go2Bed();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("LetterDiv").style.display = "none";
+        first=false;
+        exit=false;
+        document.getElementById("NumberLetterCode").style.display = "block";
+        
+        go2Bed();
+        return;
+    }
+    else{
+        setTimeout(readLetter,100);
+    }   
+}
+function twoBedOutMove(){
+    if (first==false){
+    sendText('Move Here?');
+    sendInteraction('Move');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        goTwoBedOut();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(twoBedOutMove,100);
+    }
+    
+}  
+function pillowLeft(){
+    first=false;
+    sendText("There's nothing there");
+    return;
+}
+function toilet(){
+    first=false;
+    sendText("Well I've got a wet hand now...");
+}
+function bedRollClue(){
+    if(bedRoll==false){
+     if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("BedRollClueDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText('I found this tucked inside the mattress roll.');
+        sendInteraction('Pick Up');
+        bedRollPickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("BedRollClueDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(bedRollClue,100);
+    }
+    }
+    else{
+        return;
+    }
+}
+function bedRollPickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("BedRollClueDiv").style.display = "none";
+        document.getElementById("BedRollClue").style.display = "block";
+        bedRoll=true;
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("BedRollClueDiv").style.display = "none";
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(bedRollPickUp,100);
+    }
+}
+function pillowTopClue(){
+    if(pillowTop==false){
+     if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("PillowClueDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText('I found this hidden under the pillow.');
+        sendInteraction('Pick Up');
+        pillowPickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("PillowClueDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(pillowTopClue,100);
+    }
+    }
+    else{
+        return;
+    }
+}
+function pillowPickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("PillowClueDiv").style.display = "none";
+        document.getElementById("PillowClue").style.display = "block";
+        pillowTop=true;
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("PillowClueDiv").style.display = "none";
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(pillowPickUp,100);
+    }
+}
+//2 Bed Out Interactions
+function Cell2InMove(){
+       if (Cell2Key==true){
+    if (first==false){
+    sendText('Move Here?');
+    sendInteraction('Move');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        go2Bed();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(Cell2InMove,100);
+    }
+       }
+}
+function dirtyTowelClue(){
+     if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("DirtyTowelDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText('This towel is covered in coloured stains...');
+        sendInteraction('Pick Up');
+        dirtyTowelPickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("DirtyTowelDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(dirtyTowelClue,100);
+        return;
+    }
+    }
+function dirtyTowelPickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("DirtyTowelDiv").style.display = "none";
+        document.getElementById("DirtyTowel").style.display = "block";
+        towel=true;
+        first=false;
+        interact=false;
+        goTwoBedOut();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("DirtyTowelDiv").style.display = "none";
+        goTwoBedOut();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(dirtyTowelPickUp,100);
+    }
+}
+function stepladderClick(){
+    if (hammer==true){
+    if (first==false){
+    sendText('Use the hammer to break through the wall?');
+    sendInteraction('Use');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("StepladderDiv").style.display = "block";
+        first=false;
+        hole=true;
+        goTwoBedOut();
+        interact=false;
+        sendText('This stepladder was hidden behind the wall!');
+        sendInteraction('OK');
+        stepladderPickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        hole=false;
+        goTwoBedOut();
+        exit=false;
+        first=false;
+        document.getElementById("StepladderDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(stepladderClick,100);
+    }
+    }
+    else{
+       sendText('This wall has been repaired recently, and it sounds hollow.'); 
+       return;
+    }
+
+    
+    
+    
+    
+    
+}
+function stepladderPickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("StepladderDiv").style.display = "none";
+        document.getElementById("Stepladder").style.display = "block";
+        stepladder=true;
+        first=false;
+        interact=false;
+        goTwoBedOut();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("StepladderDiv").style.display = "none";
+         document.getElementById("Stepladder").style.display = "block";
+        stepladder=true;
+        exit=false;
+        first=false;
+        goTwoBedOut();
+        return;
+    }
+    else{
+        setTimeout(stepladderPickUp,100);
+    }
+}
+function sinkClick(){
+   if(pipe==false){
+   if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("sinkCloseupDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText("It's a sink.");
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("sinkCloseupDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(sinkClick,100);
+        return;
+    }
+   }
+   else{
+       sendText("I think I'd better leave that sink alone now. It might break even more if I touch it again.");
+   }
+}
+//Sink Interactions
+function exitSink(){
+    first=false;
+    document.getElementById("sinkCloseupDiv").style.display = "none";
+    clearText();
+    goTwoBedOut();
+    
+}
+function tapClick(){
+    if (first==false){
+    sendText('Turn Tap?');
+    sendInteraction('Turn');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        exitSink();
+        document.getElementById("PipeDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText('When I turned the tap, this piece of pipe fell out from under the sink. They really need to invest in a plumber...');
+        sendInteraction('OK');
+        pipePickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("PipeDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(tapClick,100);
+    }
+}
+function pipePickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("PipeDiv").style.display = "none";
+        document.getElementById("BrokenPipe").style.display = "block";
+        pipe=true;
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("PipeDiv").style.display = "none";
+        document.getElementById("BrokenPipe").style.display = "block";
+        pipe=true;
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(pipePickUp,100);
+    }
+}
+//One Bed Full Interactions
+function oneBedAngleMove(){
+    if (first==false){
+    sendText('Move Here?');
+    sendInteraction('Move');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        goOneBedAngle();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(oneBedAngleMove,100);
+    }
+    
+} 
+function toiletCloseupMove(){
+    if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        goToiletCloseup();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(toiletCloseupMove,100);
+    }
+    
+} 
+function oneBedSink(){
+    first=false;
+    sendText("Well while I'm here, I guess I should wash my hands. I wouldn't want to accidentally spread germs and start a global pandemic.");
+    return;
+}
+function oneBedTowel(){
+    first=false;
+    sendText("This is just a normal towel, albeit a bit grimy. When's laundry day around here?");
+    return;
+}
+function oneBedPillow(){
+    first=false;
+    sendText("There's nothing under this pillow.");
+    return;
+}
+//One Bed Angle Interactions
+function oneBedFullMove(){
+    if (first==false){
+    sendText('Move Here?');
+    sendInteraction('Move');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        goOneBedFull();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(oneBedFullMove,100);
+    }
+    
+}
+function crossClick(){
+    if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("CrossDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText("It just seems to be a normal cross. Except for this seam halfway down...");
+        sendInteraction('Pry Open');
+        CrossPickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("CrossDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(crossClick,100);
+    }
+}
+function CrossPickUp(){
+   
+     if (interact==true){
+        clearText();
+        document.getElementById("CrossDiv").style.display = "none";
+        first=false;
+        interact=false;
+        sendText("It was hiding a screwdriver! Although the prisoners probably didn't use it for DIY...")
+        document.getElementById("CrossScrewdriverDiv").style.display = "block";
+        sendInteraction("OK");
+         setTimeout(screwdriverGet(), 200);
+        
+        
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("CrossDiv").style.display = "none";
+        goOneBedAngle();
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(CrossPickUp,100);
+    }
+
+}
+function screwdriverGet(){
+     if (interact==true){
+        clearText();
+        document.getElementById("CrossScrewdriverDiv").style.display = "none";
+        cross=true;
+        goOneBedAngle();
+        document.getElementById("CrossScrewdriver").style.display = "block";
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("CrossScrewdriverDiv").style.display = "none";
+        cross=true;
+        goOneBedAngle();
+        document.getElementById("CrossScrewdriver").style.display = "block";
+        first=false;
+        exit=false;
+        return;
+    }
+    else{
+        setTimeout(screwdriverGet,100);
+    }
+}
+//Toilet Closeup Interactions
+function hammerClick(){
+    if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("HammerDiv").style.display = "block";
+        sendText("There's a hammer in this toilet... I guess that's one way to hide stuff from the guards.");
+        sendInteraction('Take');
+        first=false;
+        interact=false;
+        hammerPickUp();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("HammerDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(hammerClick,100);
+    }
+}
+function hammerPickUp(){
+   
+     if (interact==true){
+        clearText();
+        document.getElementById("HammerDiv").style.display = "none";
+        first=false;
+        interact=false;
+        hammer=true;
+        document.getElementById("Hammer").style.display = "block";
+        goToiletCloseup();
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("HammerDiv").style.display = "none";
+        first=false;
+        exit=false;
+        hammer=false;
+        document.getElementById("Hammer").style.display = "none";
+        goToiletCloseup();
+        return;
+    }
+    else{
+        setTimeout(hammerPickUp,100);
+    }
+
+}
+function bookClick(){
+    if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        book=true;
+        document.getElementById("BookDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText("It's an old children's book.");
+        sendInteraction('OK');
+        setTimeout(bookPickUp(), 200);
+        
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("BookDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(bookClick,100);
+    }
+}
+function bookPickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("BookDiv").style.display = "none";
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("BookDiv").style.display = "none";
+        first=false;
+        exit=false;
+        return;
+    }
+    else{
+        setTimeout(bookPickUp,100);
+    }
+
+}
+//Light Interactions
+function showLight(){
+   if (diffuser==false){
+   if (first==false){
+    sendText('Climb the stepladder to look closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        light=true;
+        clearText();
+        document.getElementById("lightCloseupWithDiffuserDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText("The light is broken. There's something inside it, but I can't see through this diffuser.");
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("lightCloseupWithDiffuserDiv").style.display = "none";
+        return;
+    }
+    else{
+        setTimeout(showLight,100);
+        return;
+    } 
+   }
+   else{
+       if (first==false){
+    sendText('Climb the stepladder to look closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        interact=false;
+        first=false;
+        document.getElementById("lightCloseupWithDiffuserDiv").style.display = "none";
+        document.getElementById("lightCloseupNoDiffuserDiv").style.display = "block"; 
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        document.getElementById("lightCloseupWithDiffuserDiv").style.display = "none";
+        return;
+    }
+     else{
+        setTimeout(showLight,100);
+        return;
+    } 
+      
+   }
+}
+function exitLight(){
+      first=false;
+      exit=false;
+       interact=false;
+    document.getElementById("lightCloseupWithDiffuserDiv").style.display = "none";
+    document.getElementById("lightCloseupNoDiffuserDiv").style.display = "none";
+    clearText();
+}
+function screwClick(){
+    if (cross==true){
+    if (first==false){
+    sendText('Use the Cross/Screwdriver to unscrew the diffuser?');
+    sendInteraction('Use');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("lightCloseupWithDiffuserDiv").style.display = "none";
+        document.getElementById("lightCloseupNoDiffuserDiv").style.display = "block";
+        diffuser=true;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        diffuser =false;
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(screwClick,100);
+    }
+    }
+    else{
+       sendText("These screws hold the diffuser in place. They're too tight to turn by hand."); 
+       return;
+    }
+    
+    
+}
+//Keybox Interactions
+function CellOneKey(){
+    exitKeyBox();
+    
+    document.getElementById("Cell1KeyDiv").style.display = "block";
+        first=false;
+        interact=false;
+        sendText("The box opened! I found this inside. It's another key to one of the cells!");
+        sendInteraction('OK');
+        CellOneKeyPickUp();
+}
+function keyBox(){
+    if (Cell1Key==false){
+    if (first==false){
+    sendText('Look Closer?');
+    sendInteraction('Look');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+        document.getElementById("keyBoxDiv").style.display = "block";
+        first=false;
+        interact=false;
+        lockedBox=true;
+        sendText('This box needs a 4-digit code to open');
+        
+        
+        return;
+    }
+    if (exit==true){
+        clearText();
+        exit=false;
+        first=false;
+        return;
+    }
+   
+    else{
+        setTimeout(keyBox,100);
+    }
+    } 
+}
+function enterCode(){
+var code = document.getElementById("code").value;
+console.log(code);
+  if (code != null) {
+    if(code==keyBoxAnswer){
+        
+        CellOneKey();
+        return;
+    }
+     else{
+        sendText("The box won't open, that must not be the right code.");
+        
+        return;
+    }
+  }
+  else{
+      return;
+  }
+}
+function exitKeyBox(){
+    document.getElementById("keyBoxDiv").style.display = "none";
+    clearText();
+    go2Bed();
+    
+}
+function CellOneKeyPickUp(){
+     if (interact==true){
+        clearText();
+        document.getElementById("Cell1KeyDiv").style.display = "none";
+        Cell1Key=true;
+        go2Bed();
+        document.getElementById("1BedKey").style.display = "block";
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+        document.getElementById("Cell1KeyDiv").style.display = "none";
+        Cell1Key=true;
+        go2Bed();
+        document.getElementById("1BedKey").style.display = "block";
+        exit=false;
+        first=false;
+        return;
+    }
+    else{
+        setTimeout(CellOneKeyPickUp,100);
+    }
+
+}
+//Keypad Interactions
+function keyOneDown(){
+    
+    keyCode += "1";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyOneDown").style.display = "block";
+    return;
+}
+function keyOneUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyOneDown").style.display = "none";
+    return; 
+}
+function keyTwoDown(){
+  
+    keyCode += "2";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyTwoDown").style.display = "block";
+    return;
+}
+function keyTwoUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyTwoDown").style.display = "none";
+    return; 
+}
+function keyThreeDown(){
+   
+    keyCode += "3";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyThreeDown").style.display = "block";
+    return;
+}
+function keyThreeUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyThreeDown").style.display = "none";
+    return; 
+}
+function keyFourDown(){
+    
+    keyCode += "4";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyFourDown").style.display = "block";
+    return;
+}
+function keyFourUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyFourDown").style.display = "none";
+    return; 
+}
+function keyFiveDown(){
+   
+    keyCode += "5";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyFiveDown").style.display = "block";
+    return;
+}
+function keyFiveUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyFiveDown").style.display = "none";
+    return; 
+}
+function keySixDown(){
+   
+    keyCode += "6";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keySixDown").style.display = "block";
+    return;
+}
+function keySixUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keySixDown").style.display = "none";
+    return; 
+}
+function keySevenDown(){
+   
+    keyCode += "7";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keySevenDown").style.display = "block";
+    return;
+}
+function keySevenUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keySevenDown").style.display = "none";
+    return; 
+}
+function keyEightDown(){
+   
+    keyCode += "8";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyEightDown").style.display = "block";
+    return;
+}
+function keyEightUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyEightDown").style.display = "none";
+    return; 
+}
+function keyNineDown(){
+  
+    keyCode += "9";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyNineDown").style.display = "block";
+    return;
+}
+function keyNineUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyNineDown").style.display = "none";
+    return; 
+}
+function keyStarDown(){
+
+    keyCode += "*";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyStarDown").style.display = "block";
+    return;
+}
+function keyStarUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyStarDown").style.display = "none";
+    return; 
+}
+function keyZeroDown(){
+   
+    keyCode += "0";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyZeroDown").style.display = "block";
+    return;
+}
+function keyZeroUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyZeroDown").style.display = "none";
+    return; 
+}
+function keyHashDown(){
+    keypadCheck= true;
+    keyCode += "#";
+    console.log(keyCode);
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyHashDown").style.display = "block";
+    return;
+}
+function keyHashUp(){
+    document.getElementById("keypadMain").style.display = "block";
+    document.getElementById("keyHashDown").style.display = "none";
+    setTimeout(checkKeyCode, 100);
+    return; 
+}
+function checkKeyCode(){
+    first=false;
+    console.log('Input code= ' + keyCode);
+    if (keyCode==keyCodeAnswer)
+    {
+    
+    keyCode="";
+    console.log("Correct");
+    gameOver=true;
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyGreenLight").style.display = "block";
+    setTimeout(function(){ document.getElementById("keypadMain").style.display = "block"; }, 1000);
+    setTimeout(function(){ document.getElementById("keyGreenLight").style.display = "none"; }, 1000);
+    sendText("That's the correct code! The door has opened!");
+    keypadCheck= false;
+    setTimeout(keypadOff, 100);
+   
+    return;
+    
+    }
+    else
+    {
+    keyCode="";
+    console.log("Incorrect");
+    document.getElementById("keypadMain").style.display = "none";
+    document.getElementById("keyRedLight").style.display = "block";
+    setTimeout(function(){ document.getElementById("keypadMain").style.display = "block"; }, 1000);
+    setTimeout(function(){ document.getElementById("keyRedLight").style.display = "none"; }, 1000);
+    sendText("That's not the correct code...");
+    keypadCheck= false;
+    setTimeout(keypadOff, 100);
+    return;
+    }
+}
+function keypadOff(){
+         
+    if (first==false){
+    sendInteraction('Go Back');
+    first=true;
+    }
+     if (interact==true){
+        clearText();
+         keyCode="";
+        document.getElementById("keypadDiv").style.display = "none";
+        document.getElementById("hallwayExitNoLightKey").style.display = "block";
+         goHallwayExit();
+        first=false;
+        interact=false;
+        return;
+    }
+    if (exit==true){
+        clearText();
+         keyCode="";
+        document.getElementById("keypadDiv").style.display = "none";
+        document.getElementById("hallwayExitNoLightKey").style.display = "block";
+        goHallwayExit();
+        exit=false;
+        first=false;
+        return;
+    }
+    if (keypadCheck==true){
+    offDimBackground()
+    document.getElementById("exitButton").style.display = "none";
+    document.getElementById("interactButton").style.display = "none";
+    goHallwayExit();
+    
+        return;
+    }
+    else{
+        setTimeout(keypadOff,100);
+    }
+    
+}
+//Block Enter Key From Resetting the Page
+$(document).keypress(
+  function(event){
+    if (event.which == '13') {
+      event.preventDefault();
+      console.log("Enter Key Blocked");
+    }
+});
+</script>
+</html>
