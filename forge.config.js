@@ -1,7 +1,5 @@
 module.exports = {
-  packagerConfig: {
-    icon: './src/icons/icon' // no file extension required
-    },
+  packagerConfig: {},
   rebuildConfig: {},
   makers: [
     {
@@ -33,7 +31,7 @@ module.exports = {
       config: {
         repository: {
           owner: "Sparrowill",
-          name: "cocktail-calculator"
+          name: "escape-room"
         },
       }
   }

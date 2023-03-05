@@ -3,12 +3,6 @@ const {app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 
-// formatter that converts integers into a £00.00 format.
-const formatter = new Intl.NumberFormat('en-GB', {
-    style: 'currency',
-    currency: 'GBP',
-
-})
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -21,7 +15,6 @@ const isMac = process.platform === 'darwin'
 const createWindow = () => {
   // Create the browser window
     var mainWindow = new BrowserWindow({
-    icon: path.join(__dirname,'/icons/icon.png'),
     // Backup dimensions in case maximise() is not supported
     width: 800,
     height: 600,
@@ -43,7 +36,6 @@ const createWindow = () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-var newWindow = null
 app.on('ready', createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
