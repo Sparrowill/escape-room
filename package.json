@@ -1,7 +1,7 @@
 {
   "name": "escape-room",
   "productName": "escape-room",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An Electron port of my escape room",
   "main": "src/index.js",
   "scripts": {
